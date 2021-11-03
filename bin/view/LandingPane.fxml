@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="landingPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #9F634B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LandingController">
+   <children>
+      <AnchorPane layoutX="799.0" layoutY="16.0" prefHeight="737.0" prefWidth="211.0" style="-fx-background-color: #6f4534;">
+         <children>
+            <Button fx:id="backupBtn" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#handleBackup" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Backup" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="restoreBtn" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#handleRestore" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Restore" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="signOutBtn" layoutX="14.0" layoutY="559.0" mnemonicParsing="false" onAction="#handleSignOut" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Sign Out" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="737.0" prefWidth="775.0" style="-fx-background-color: #6f4534;">
+         <children>
+            <Button fx:id="coffeBtn1" layoutX="14.0" layoutY="60.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="House Blend" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn2" layoutX="202.0" layoutY="60.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Dark Roast" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn3" layoutX="390.0" layoutY="60.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Decaf" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn4" layoutX="578.0" layoutY="60.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="11.0" text="Coffee" textFill="#e58547">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="coffeBtn5" layoutX="14.0" layoutY="113.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn6" layoutX="202.0" layoutY="113.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn7" layoutX="390.0" layoutY="113.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="coffeBtn8" layoutX="578.0" layoutY="113.0" mnemonicParsing="false" onAction="#addCoffeeOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="166.0" text="Condiments" textFill="#e58547">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="condBtn1" layoutX="14.0" layoutY="209.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Steamed Milk" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn2" layoutX="202.0" layoutY="209.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="Soy" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn3" layoutX="390.0" layoutY="209.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn4" layoutX="578.0" layoutY="209.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn5" layoutX="14.0" layoutY="262.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn6" layoutX="202.0" layoutY="262.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn7" layoutX="390.0" layoutY="262.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="condBtn8" layoutX="578.0" layoutY="262.0" mnemonicParsing="false" onAction="#addCondimentOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="314.0" text="Food" textFill="#e58547">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="foodBtn1" layoutX="14.0" layoutY="356.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn2" layoutX="202.0" layoutY="356.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn3" layoutX="390.0" layoutY="356.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn4" layoutX="578.0" layoutY="356.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn5" layoutX="14.0" layoutY="409.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn6" layoutX="202.0" layoutY="409.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn7" layoutX="390.0" layoutY="409.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="foodBtn8" layoutX="578.0" layoutY="409.0" mnemonicParsing="false" onAction="#addFoodOrder" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="-add new-" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn1" layoutX="10.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="1" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="461.0" text="Quantity" textFill="#e58547">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="qtyBtn2" layoutX="95.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="2" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn3" layoutX="180.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="3" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn4" layoutX="263.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="4" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn5" layoutX="346.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="5" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn6" layoutX="429.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="6" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn7" layoutX="513.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="7" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn8" layoutX="599.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="8" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="qtyBtn9" layoutX="684.0" layoutY="508.0" mnemonicParsing="false" onAction="#handleQtyChoice" prefWidth="77.0" style="-fx-background-color: #4f3125;" text="9" textFill="#e58547">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <ListView fx:id="receiptListView" layoutX="10.0" layoutY="625.0" prefHeight="98.0" prefWidth="410.0" style="-fx-background-color: #4f3125;" />
+            <Button fx:id="addBtn" layoutX="434.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="48.0" prefWidth="327.0" style="-fx-background-color: #4f3125;" text="Add to Order" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Button fx:id="checkoutBtn" layoutX="434.0" layoutY="643.0" mnemonicParsing="false" onAction="#handleCheckout" prefHeight="48.0" prefWidth="327.0" style="-fx-background-color: #702421;" text="ORDER" textFill="#e58547">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Button>
+            <Label fx:id="itemPreview" layoutX="10.0" layoutY="560.0" prefHeight="48.0" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="    item" textFill="#e58547">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+            <Label fx:id="qtyPreview" layoutX="210.0" layoutY="560.0" prefHeight="48.0" prefWidth="183.0" style="-fx-background-color: #4f3125;" text="    quantity" textFill="#e58547">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
