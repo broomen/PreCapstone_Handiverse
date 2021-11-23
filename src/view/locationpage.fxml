@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="128.0" prefWidth="1024.0" style="-fx-background-color: white;">
+         <children>
+            <Label alignment="CENTER" layoutX="25.0" layoutY="25.0" prefHeight="64.0" prefWidth="200.0" text="Handiverse" textAlignment="CENTER">
+               <font>
+                  <Font name="Poppins SemiBold" size="30.0" />
+               </font>
+            </Label>
+            <TextField layoutX="288.0" layoutY="44.0" prefHeight="40.0" prefWidth="219.0" promptText="What are you looking for?" text="Enter a name,tags, etc" />
+            <TextField layoutX="517.0" layoutY="45.0" prefHeight="39.0" prefWidth="219.0" promptText="Where are you looking for it?" text="Enter a town,zip code, etc" />
+            <Button alignment="CENTER_RIGHT" layoutX="858.0" layoutY="45.0" mnemonicParsing="false" text="Login">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font></Button>
+            <Button alignment="CENTER" layoutX="921.0" layoutY="43.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="70.0" text="Sign Up">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font></Button>
+            <Button layoutX="744.0" layoutY="44.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="65.0" text="Search" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane layoutY="128.0" prefHeight="722.0" prefWidth="1024.0" style="-fx-background-color: white;">
+         <children>
+            <FlowPane layoutX="131.0" layoutY="68.0" prefHeight="158.0" prefWidth="711.0" style="-fx-background-color: white;" AnchorPane.topAnchor="30.0">
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="686.0">
+                     <children>
+                        <ImageView fitHeight="136.0" fitWidth="142.0" layoutX="7.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="849.0">
+                           <image>
+                              <Image url="@../../../../../Downloads/doge.jpeg" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="189.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location Name" wrappingWidth="124.35684967041016" AnchorPane.topAnchor="3.25">
+                           <font>
+                              <Font name="Poppins Medium" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="188.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="124.35684967041016">
+                           <font>
+                              <Font name="Poppins Medium" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="189.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="124.35684967041016">
+                           <font>
+                              <Font name="Poppins Medium" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="188.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hours of operation" wrappingWidth="161.0839614868164">
+                           <font>
+                              <Font name="Poppins Medium" size="15.0" />
+                           </font>
+                        </Text>
+                        <ButtonBar prefHeight="40.0" prefWidth="657.0" AnchorPane.topAnchor="160.0">
+                          <buttons>
+                            <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                              <Button mnemonicParsing="false" text="Button" />
+                          </buttons>
+                           <padding>
+                              <Insets top="1.0" />
+                           </padding>
+                        </ButtonBar>
+                        <Pane layoutX="695.0" layoutY="10.0" prefHeight="159.0" prefWidth="176.0" style="-fx-background-color: skyblue;">
+                           <children>
+                              <Text layoutX="28.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact information" wrappingWidth="124.35684967041016">
+                                 <font>
+                                    <Font name="Poppins Medium" size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets top="3.0" />
+                     </opaqueInsets>
+                  </AnchorPane>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </FlowPane>
+            <Text layoutX="170.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reviews" wrappingWidth="124.35684967041016">
+               <font>
+                  <Font name="Poppins Medium" size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="548.0" layoutY="318.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="144.0" text="Create a Review">
+               <font>
+                  <Font name="Poppins Medium" size="13.0" />
+               </font>
+            </Button>
+            <TextField layoutX="185.0" layoutY="316.0" prefHeight="40.0" prefWidth="219.0" promptText="What are you looking for?" text="Tags/keyword to search for" />
+            <Button layoutX="441.0" layoutY="316.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="65.0" text="Search" />
+            <Text layoutX="816.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photos" wrappingWidth="124.35684967041016">
+               <font>
+                  <Font name="Poppins Medium" size="18.0" />
+               </font>
+            </Text>
+            <ScrollPane layoutX="777.0" layoutY="312.0" prefHeight="348.0" prefWidth="200.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="333.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="152.0" fitWidth="174.0" layoutX="3.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/coffee-shop.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="152.0" fitWidth="174.0" layoutX="2.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../../Downloads/cafe.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <ImageView fitHeight="93.0" fitWidth="96.0" layoutX="183.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Downloads/doge.jpeg" />
+               </image>
+            </ImageView>
+            <Text layoutX="295.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="124.35684967041016">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="293.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount of reviews" wrappingWidth="153.47577301914788">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="295.0" layoutY="448.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endorsement score" wrappingWidth="153.47577301914788">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="437.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date of Revwiew" wrappingWidth="124.35684967041016">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="435.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rating" wrappingWidth="153.47577301914788">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="437.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description tags" wrappingWidth="153.47577301914788">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="587.0" layoutY="400.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Like counter" wrappingWidth="124.35684967041016">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="585.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dislike counter" wrappingWidth="153.47577301914788">
+               <font>
+                  <Font name="Poppins Medium" size="10.0" />
+               </font>
+            </Text>
+            <Text layoutX="177.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User's review content" wrappingWidth="191.68863677978516">
+               <font>
+                  <Font name="Poppins Medium" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
