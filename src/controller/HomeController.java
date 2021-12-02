@@ -22,6 +22,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model_location.Location;
@@ -38,22 +39,32 @@ public class HomeController implements Initializable{
 	@FXML private Button searchButton;
 	@FXML private ImageView searchImage;
 	
+	@FXML private Button restBtn;
+	@FXML private Hyperlink parkLink;
+	@FXML private Hyperlink museumLink;
+	@FXML private Hyperlink theaterLink;
+	
 	private LocationStore locStore = App.getLocStore();
 	private TagStore tagStore = App.getTagStore();
 	private LocationStore searchResultStore;
 	private ArrayList<Integer> keyList;
 	private static ArrayList<Location> locList;
+	private static String recentLoc;
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		locStore = App.getLocStore();
 		tagStore = App.getTagStore();
+		
 	}
 	
 	@FXML
 	public void handleSearch(ActionEvent event) {
 		searchResultStore = new LocationStore();
 		String fieldA = searchA.getText().toLowerCase();
-		String fieldB = searchB.getText().toLowerCase();;
+		String fieldB = searchB.getText().toLowerCase();
+		if(!fieldB.isEmpty()) {
+			recentLoc = fieldB;
+		}
 		if(searchA.getText().isEmpty() && !searchB.getText().isEmpty()) { 
 			searchForLocations(fieldB);
 		} else if(!searchA.getText().isEmpty() && searchB.getText().isEmpty()) {
@@ -64,6 +75,34 @@ public class HomeController implements Initializable{
 		} else if(!searchA.getText().isEmpty() && !searchB.getText().isEmpty()) {
 			searchForMulti(fieldA, fieldB);
 		}
+		mapToList();
+		searchResultStore.display();
+		URL url;
+		if (locList.size() > 0) {
+			try {
+				url = new File("src/view/SearchPane.fxml").toURI().toURL();
+				Parent root = FXMLLoader.load(url);
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			} catch (MalformedURLException e) {
+				System.out.println("url not found!");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	@FXML
+	public void handleHiddenButton(ActionEvent event) {
+		System.out.println("bonk!");
+		searchResultStore = new LocationStore();
+		String fieldA = ((Button)event.getSource()).getText();
+		String fieldB = recentLoc;
+		searchForMulti(fieldA, fieldB);
 		mapToList();
 		searchResultStore.display();
 		URL url;
@@ -155,6 +194,8 @@ public class HomeController implements Initializable{
 		return checker;		
 	}
 	
+
+	
 	private void mapToList() {
 		keyList = new ArrayList<Integer>(searchResultStore.getLocationStore().keySet());
 		locList= new ArrayList<Location>(searchResultStore.getLocationStore().values());
@@ -174,6 +215,10 @@ public class HomeController implements Initializable{
 
 	public void setLocList(ArrayList<Location> locList) {
 		this.locList = locList;
+	}
+	
+	public static void setRecentLoc(String zip) {
+		recentLoc = zip;
 	}
 	
 	

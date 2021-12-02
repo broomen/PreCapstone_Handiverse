@@ -1,8 +1,11 @@
 package model_location;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javafx.scene.image.ImageView;
+import model_review.ReviewStore;
 import model_tag.Tag;
 import model_tag.TagStore;
 
@@ -20,6 +23,7 @@ public class Location {
 	private int rating;
 	private TagStore tags;
 //	private ImageView img;
+	private ReviewStore reviews;
 	
 	private static int idCounter = 0;
 	
@@ -48,8 +52,7 @@ public class Location {
 		this.type = type;
 		this.rating = rating;
 		this.tags = new TagStore();
-//		System.out.println(this.getClass().getResource(""));
-//		this.img = new ImageView("src/images/" + String.valueOf(id) + ".jpg");
+		this.reviews = new ReviewStore();
 	}
 
 	public Location(int id) {
@@ -152,6 +155,14 @@ public class Location {
 //		this.img = img;
 //	}
 
+	public ReviewStore getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(ReviewStore reviews) {
+		this.reviews = reviews;
+	}
+
 	@Override
 	public String toString() {
 		String tagString = "";
@@ -159,7 +170,7 @@ public class Location {
 			tagString += entry.getValue().getDesc() + ", ";
 			
 		}
-		return /*"Location [name=" +*/ name + "\n" + id + "\n" + address + "\n" + city + ", " + state
+		return /*"Location [name=" +*/ name + "\n" +/* id + "\n" +*/ address + "\n" + city + ", " + state
 				+ ", " + stateInitials + ", " + zipCode + "\n" + phone + "\n" + type + "\n" + rating + "/5" /*, tags=" + tagString + "]"*/;
 	}
 

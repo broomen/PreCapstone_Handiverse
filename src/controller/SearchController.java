@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,7 +34,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model_location.Location;
 
 public class SearchController implements Initializable{
@@ -57,32 +60,32 @@ public class SearchController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		locList = HomeController.getLocList();
 		searchResults.getItems().addAll(locList);
-//		ObservableList<Path> imageFiles = FXCollections.observableArrayList();
-//		ObservableList<Location> locations = FXCollections.observableArrayList();
-//		for (int i = 0; i < locList.size(); i++) {
-//			searchResults.getItems().add(locList.get(i));
-//			imageFiles.add(Paths.get("images/" + locList.get(i).getID() + ".jpg"));
-//		}
-//		ObservableList<Location> oLocList = FXCollections.observableArrayList(locList);
-//		searchResults = new ListView<>(oLocList);
-//		
-//		searchResults.setCellFactory(l -> new ListCell<Location>() {
-//			private final ImageView imageView = new ImageView();
-//			
-//			@Override
-//			public void updateItem(Location location, boolean empty) {
-//				super.updateItem(location, empty);
-//				if(empty) {
-//					setText(null);
-//					setGraphic(null);
-//				} else {
-//					setText(location.toString());
-////					setGraphic(location.getImg());
-//				}
-//			}
-//		});
-		
-		
+		ImageView testview;
+		searchResults.setCellFactory(new Callback<ListView<Location>, ListCell<Location>>() {
+            @Override
+            public ListCell<Location> call(ListView<Location> p) {
+                return new ListCell<Location>() {
+                    @Override
+                    protected void updateItem(Location item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            setText(item.toString());
+
+                            // decide to add a new styleClass
+                            // getStyleClass().add("costume style");
+                            // decide the new font size
+                            setFont(Font.font(18));
+                            Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\" + String.valueOf(item.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
+                            ImageView tempView = new ImageView(temp);
+                            tempView.setPreserveRatio(true);
+                            tempView.setFitWidth(100);
+                            tempView.setFitHeight(100);
+                            setGraphic(tempView);
+                        }
+                    }
+                };
+            }
+        });		
 	}
 	
 	public void handleLocationSelect(MouseEvent event) {
@@ -106,6 +109,22 @@ public class SearchController implements Initializable{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+		}
+	}
+	
+	public void handleHomeButton(MouseEvent event) {
+		try {
+			URL url = new File("src/view/HomePane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (MalformedURLException e) {
+			System.out.println("url not found");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

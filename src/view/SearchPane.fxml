@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="searchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SearchController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Handiverse">
+      <Label layoutX="14.0" layoutY="14.0" onMouseClicked="#handleHomeButton" text="Handiverse">
          <font>
             <Font name="Verdana" size="42.0" />
          </font>
@@ -36,6 +36,6 @@
             <Image url="@../images/searchIcon.png" />
          </image>
       </ImageView>
-      <ListView fx:id="searchResults" layoutX="141.0" layoutY="152.0" onMouseClicked="#handleLocationSelect" prefHeight="539.0" prefWidth="796.0" />
+      <ListView fx:id="searchResults" layoutX="141.0" layoutY="152.0" onMouseClicked="#handleLocationSelect" prefHeight="539.0" prefWidth="796.0" style="-fx-background-color: #CCCCCC; -fx-border-color: #000000;" />
    </children>
 </AnchorPane>

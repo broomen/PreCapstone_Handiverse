@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -36,31 +35,11 @@
             <Image url="@../images/searchIcon.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="restaurantLink" layoutX="163.0" layoutY="272.0" prefHeight="53.0" prefWidth="133.0" style="-fx-text-fill: #000000;" text="Restaurants" underline="true">
-         <font>
-            <Font name="Verdana" size="20.0" />
-         </font>
-      </Hyperlink>
       <ImageView fx:id="restaurantIcon" fitHeight="60.0" fitWidth="60.0" layoutX="278.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/restaurantIcon.png" />
          </image>
       </ImageView>
-      <Hyperlink fx:id="parkLink" layoutX="364.0" layoutY="272.0" prefHeight="53.0" prefWidth="88.0" style="-fx-text-fill: #000000;" text="Parks" underline="true">
-         <font>
-            <Font name="Verdana" size="20.0" />
-         </font>
-      </Hyperlink>
-      <Hyperlink fx:id="museumLink" layoutX="520.0" layoutY="272.0" prefHeight="53.0" prefWidth="133.0" style="-fx-text-fill: #000000;" text="Museums" underline="true">
-         <font>
-            <Font name="Verdana" size="20.0" />
-         </font>
-      </Hyperlink>
-      <Hyperlink fx:id="theaterLink" layoutX="711.0" layoutY="272.0" prefHeight="53.0" prefWidth="125.0" style="-fx-text-fill: #000000;" text="Theaters" underline="true">
-         <font>
-            <Font name="Verdana" size="20.0" />
-         </font>
-      </Hyperlink>
       <ImageView fx:id="parkIcon" fitHeight="60.0" fitWidth="60.0" layoutX="427.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/treeIcon.png" />
@@ -76,5 +55,29 @@
             <Image url="@../images/theaterIcon.png" />
          </image>
       </ImageView>
+      <Label layoutX="169.0" layoutY="286.0" text="Restaurants" underline="true">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="restBtn" layoutX="169.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleHiddenButton" prefHeight="60.0" prefWidth="159.0" style="-fx-opacity: 0;" text="restaurant" />
+      <Button fx:id="restBtn1" layoutX="367.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleHiddenButton" prefHeight="60.0" prefWidth="121.0" style="-fx-opacity: 0;" text="park" />
+      <Button fx:id="restBtn11" layoutX="526.0" layoutY="272.0" mnemonicParsing="false" onAction="#handleHiddenButton" prefHeight="53.0" prefWidth="165.0" style="-fx-opacity: 0;" text="museum" />
+      <Button fx:id="restBtn111" layoutX="711.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleHiddenButton" prefHeight="66.0" prefWidth="165.0" style="-fx-opacity: 0;" text="theater" />
+      <Label layoutX="370.0" layoutY="286.0" text="Parks" underline="true">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="526.0" layoutY="286.0" text="Museums" underline="true">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="717.0" layoutY="286.0" text="Theaters" underline="true">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

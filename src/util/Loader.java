@@ -7,6 +7,8 @@ import java.sql.Statement;
 
 import model_location.Location;
 import model_location.LocationStore;
+import model_review.Review;
+import model_review.ReviewStore;
 import model_tag.Tag;
 import model_tag.TagStore;
 
@@ -35,6 +37,20 @@ public class Loader {
 				tempTag = tagStore.getTagStore().get(j);
 				if(tempTag.getLocationID() == tempLocation.getID()) {
 					locStore.getLocationStore().get(i).getTags().add(tempTag);
+				}				
+			}
+		}
+	}
+	
+	public static void addReviewsTo(LocationStore locStore, ReviewStore reviewStore) {
+		Location tempLocation = new Location(10);
+		Review tempReview = new Review(1);
+		for(int i = 1; i < locStore.size() + 1; i++) {
+			tempLocation = locStore.getLocationStore().get(i);
+			for(int j = 1; j < reviewStore.size() + 1; j++) {
+				tempReview = reviewStore.getReviewStore().get(j);
+				if(tempReview.getLocID() == tempLocation.getID()) {
+					locStore.getLocationStore().get(i).getReviews().add(tempReview);
 				}				
 			}
 		}
@@ -110,6 +126,42 @@ public class Loader {
 			util.ConnectionUtil.closeConnection(conn);
 		}
 		return tagStore;
+	}
+	
+	public static ReviewStore getReviewsFromDB() {
+		Connection conn = null;
+		conn = ConnectionUtil.getConnection();
+		int tempLocID = 0;
+		int tempID = 0;
+		String tempContent = "";
+		int tempKarma = 0;
+		String tempDate = "";
+		String tempUser = "";
+		int tempRating = 0;
+		ReviewStore reviewStore = new ReviewStore();
+		try {
+			Statement statement3 = conn.createStatement();
+			statement3.setQueryTimeout(30);
+			ResultSet rs3 = statement3.executeQuery("SELECT * FROM reviews");
+			while(rs3.next()) {
+				tempID = rs3.getInt(1);
+				tempLocID = rs3.getInt(2);
+				tempContent = rs3.getString(3);
+				tempKarma = rs3.getInt(4);
+				tempDate = rs3.getString(5);
+				tempUser = rs3.getString(6);
+				tempRating = rs3.getInt(7);
+				Review tempReview = new Review(tempID, tempLocID, tempContent, tempKarma, tempDate, tempUser, tempRating);
+				reviewStore.add(tempReview);
+			}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} finally {
+			util.ConnectionUtil.closeConnection(conn);
+		}
+		return reviewStore;
 	}
 
 }

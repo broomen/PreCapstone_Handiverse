@@ -61,6 +61,14 @@ public class Tag  implements Comparable<Tag>{
 		return idCounter;
 	}
 	
+	public void upvote() {
+		this.karma++;
+	}
+	
+	public void downvote() {
+		this.karma--;
+	}
+	
 	public void incID() {
 		idCounter++;
 	}

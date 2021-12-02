@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model_location.LocationStore;
+import model_review.ReviewStore;
 import model_tag.TagStore;
 import util.ConnectionUtil;
 import util.Loader;
@@ -16,6 +17,7 @@ public class App extends Application {
 	private static Connection conn;
 	private static LocationStore locStore;
 	private static TagStore tagStore;
+	private static ReviewStore reviewStore;
 
 	public static void main(String[] args) {
 		launch(args);
@@ -27,7 +29,10 @@ public class App extends Application {
 		conn = ConnectionUtil.getConnection();
 		locStore = Loader.getLocationsFromDB();
 		tagStore = Loader.getTagsFromDB();
+		reviewStore = Loader.getReviewsFromDB();
+		controller.HomeController.setRecentLoc("11201");
 		Loader.addTagsTo(locStore, tagStore);
+		Loader.addReviewsTo(locStore, reviewStore);
 		Parent root = FXMLLoader.load(getClass().getResource("/view/HomePane.fxml"));
 		Scene scene = new Scene(root, 1024, 768);
 		primaryStage.setScene(scene);
@@ -41,6 +46,10 @@ public class App extends Application {
 	
 	public static TagStore getTagStore() {
 		return tagStore;
+	}
+	
+	public static ReviewStore getReviewStore() {
+		return reviewStore;
 	}
 
 	public static Connection getConn() {

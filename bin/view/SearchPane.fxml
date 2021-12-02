@@ -36,6 +36,6 @@
             <Image url="@../images/searchIcon.png" />
          </image>
       </ImageView>
-      <ListView fx:id="searchResults" layoutX="141.0" layoutY="152.0" prefHeight="539.0" prefWidth="796.0" />
+      <ListView fx:id="searchResults" layoutX="141.0" layoutY="152.0" onMouseClicked="#handleLocationSelect" prefHeight="539.0" prefWidth="796.0" />
    </children>
 </AnchorPane>

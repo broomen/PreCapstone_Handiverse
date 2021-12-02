@@ -9,84 +9,67 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="locPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LocationController">
+<AnchorPane fx:id="locPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LocationController">
    <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Handiverse">
-         <font>
-            <Font name="Verdana" size="42.0" />
-         </font>
-      </Label>
-      <TextField fx:id="searchA" layoutX="141.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
-         <font>
-            <Font name="Verdana Italic" size="22.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="searchB" layoutX="460.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
-         <font>
-            <Font name="Verdana Italic" size="22.0" />
-         </font>
-      </TextField>
-      <Button fx:id="searchButton" layoutX="779.0" layoutY="76.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">
-         <font>
-            <Font name="Verdana" size="20.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="searchIcon" fitHeight="47.0" fitWidth="42.0" layoutX="890.0" layoutY="82.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/searchIcon.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="nameLbl" layoutX="141.0" layoutY="165.0" prefHeight="42.0" prefWidth="640.0" text="Label">
-         <font>
-            <Font name="Verdana" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="addressLbl1" layoutX="141.0" layoutY="207.0" prefHeight="30.0" prefWidth="640.0" text="Label">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="addressLbl2" layoutX="140.0" layoutY="237.0" prefHeight="30.0" prefWidth="640.0" text="Label">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="phoneLbl" layoutX="140.0" layoutY="267.0" prefHeight="30.0" prefWidth="640.0" text="Label">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="ratingLbl" layoutX="141.0" layoutY="297.0" prefHeight="30.0" prefWidth="640.0" text="Label">
-         <font>
-            <Font name="Verdana" size="18.0" />
-         </font>
-      </Label>
+      <AnchorPane prefHeight="147.0" prefWidth="1024.0">
+         <children>
+            <TextField fx:id="searchA" layoutX="141.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
+               <font>
+                  <Font name="Verdana Italic" size="22.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="searchB" layoutX="460.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
+               <font>
+                  <Font name="Verdana Italic" size="22.0" />
+               </font>
+            </TextField>
+            <Button fx:id="searchButton" layoutX="779.0" layoutY="76.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">
+               <font>
+                  <Font name="Verdana" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="searchIcon" fitHeight="47.0" fitWidth="42.0" layoutX="885.0" layoutY="82.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/searchIcon.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="14.0" onMouseClicked="#handleHomeButton" text="Handiverse">
+               <font>
+                  <Font name="Verdana" size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <Line endX="695.0" layoutX="241.0" layoutY="332.0" startX="-100.0" />
-      <TextField fx:id="searchA1" layoutX="141.0" layoutY="380.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
+      <TextField fx:id="searchFilter" layoutX="141.0" layoutY="380.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
          <font>
             <Font name="Verdana Italic" size="22.0" />
          </font>
       </TextField>
-      <ListView layoutX="141.0" layoutY="513.0" prefHeight="244.0" prefWidth="796.0" />
-      <Label fx:id="tagLbl" layoutX="576.0" layoutY="380.0" prefHeight="53.0" prefWidth="104.0" text="Tags">
+      <ListView fx:id="reviewListView" layoutX="141.0" layoutY="578.0" prefHeight="244.0" prefWidth="796.0" />
+      <Label fx:id="tagLbl" layoutX="518.0" layoutY="380.0" prefHeight="53.0" prefWidth="104.0" text="Tags">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="reviewLbl" layoutX="720.0" layoutY="380.0" prefHeight="53.0" prefWidth="104.0" text="Reviews">
+      <Label fx:id="reviewLbl" layoutX="632.0" layoutY="380.0" prefHeight="53.0" prefWidth="104.0" text="Reviews">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <CheckBox fx:id="tagCheckBox" layoutX="647.0" layoutY="398.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="16.0" scaleX="2.0" scaleY="2.0">
+      <CheckBox fx:id="tagCheckBox" layoutX="587.0" layoutY="398.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="16.0" scaleX="2.0" scaleY="2.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </CheckBox>
-      <CheckBox fx:id="reviewCheckBox" layoutX="835.0" layoutY="398.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="16.0" scaleX="2.0" scaleY="2.0">
+      <CheckBox fx:id="reviewCheckBox" layoutX="742.0" layoutY="398.0" mnemonicParsing="false" prefHeight="12.0" prefWidth="16.0" scaleX="2.0" scaleY="2.0">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -96,10 +79,62 @@
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="inLbl" layoutX="485.0" layoutY="386.0" prefHeight="42.0" prefWidth="42.0" text="in: ">
+      <Label fx:id="inLbl" layoutX="470.0" layoutY="386.0" prefHeight="42.0" prefWidth="42.0" text="in: ">
          <font>
             <Font name="Verdana" size="24.0" />
          </font>
       </Label>
+      <ImageView fx:id="locPic" fitHeight="175.0" fitWidth="175.0" layoutX="141.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
+      <GridPane layoutX="340.0" layoutY="148.0" prefHeight="168.0" prefWidth="592.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="10.0" prefWidth="463.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="129.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label fx:id="nameLbl" prefHeight="42.0" prefWidth="640.0" text="Label">
+               <font>
+                  <Font name="Verdana" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="addressLbl1" prefHeight="30.0" prefWidth="640.0" text="Label" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="addressLbl2" prefHeight="30.0" prefWidth="640.0" text="Label" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="phoneLbl" prefHeight="30.0" prefWidth="640.0" text="Label" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="ratingLbl" prefHeight="30.0" prefWidth="640.0" text="Label" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="createReviewBtn" alignment="CENTER" mnemonicParsing="false" onAction="#handleCreateReview" text="Create Review" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Verdana" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </GridPane>
+      <FlowPane fx:id="btnPane" layoutX="140.0" layoutY="444.0" prefHeight="133.0" prefWidth="796.0" />
+      <Button fx:id="filterBtn" layoutX="851.0" layoutY="392.0" mnemonicParsing="false" onAction="#handleFiltering" prefHeight="29.0" prefWidth="68.0" text="Filter">
+         <font>
+            <Font name="Verdana" size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
