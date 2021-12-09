@@ -38,6 +38,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model_location.Location;
+import model_user.User;
 
 public class SearchController implements Initializable{
 	
@@ -48,9 +49,14 @@ public class SearchController implements Initializable{
 	@FXML private Button searchButton;
 	@FXML private ImageView searchImage;
 	
+	@FXML private ImageView returnImage;
+	
 	@FXML private ListView<Location> searchResults;
 	
 //	@FXML private VBox listBox;
+	private static boolean loggedIn;
+	private static User loggedUser;
+	
 	
 	private ArrayList<Integer> keyList;
 	private ArrayList<Location> locList;
@@ -128,7 +134,34 @@ public class SearchController implements Initializable{
 		}
 	}
 	
+	@FXML
+	public void handleBack(ActionEvent event) {
+		try {
+			URL url = new File("src/view/HomePane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (MalformedURLException e) {
+			System.out.println("url not found");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
+	@FXML
+	public void handleButtonHover(MouseEvent event) {
+		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon2.png");
+		returnImage.setImage(temp);
+	}
+	
+	@FXML
+	public void handleButtonExit(MouseEvent event) {
+		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon.png");
+		returnImage.setImage(temp);
+	}
 	
 //	public void initialize(URL arg0, ResourceBundle arg1) {
 //		locList = HomeController.getLocList();

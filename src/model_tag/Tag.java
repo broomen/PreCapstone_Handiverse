@@ -24,6 +24,13 @@ public class Tag  implements Comparable<Tag>{
 		this.karma = karma;
 		idCounter++;
 	}
+	
+	public Tag(int locationID, String tagDesc) {
+		this.id = idCounter++;
+		this.locationID = locationID;
+		this.desc = tagDesc;
+		this.karma = 0;
+	}
 
 	public int getID() {
 		return id;

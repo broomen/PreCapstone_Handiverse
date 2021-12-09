@@ -171,7 +171,7 @@ public class Location {
 			
 		}
 		return /*"Location [name=" +*/ name + "\n" +/* id + "\n" +*/ address + "\n" + city + ", " + state
-				+ ", " + stateInitials + ", " + zipCode + "\n" + phone + "\n" + type + "\n" + rating + "/5" /*, tags=" + tagString + "]"*/;
+				+ ", " + stateInitials + ", " + zipCode + "\n" + phone + "\n" + rating + "/5 Rating" /*, tags=" + tagString + "]"*/;
 	}
 
 	public int compareTo(Location o) {

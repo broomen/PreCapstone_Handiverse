@@ -11,6 +11,8 @@ import model_review.Review;
 import model_review.ReviewStore;
 import model_tag.Tag;
 import model_tag.TagStore;
+import model_user.User;
+import model_user.UserStore;
 
 public class Loader {
 	
@@ -162,6 +164,36 @@ public class Loader {
 			util.ConnectionUtil.closeConnection(conn);
 		}
 		return reviewStore;
+	}
+
+	public static UserStore getUsersFromDB() {
+		Connection conn = null;
+		conn = ConnectionUtil.getConnection();
+		int tempUserID = 0;
+		String tempUsername = "";
+		String tempPassword = "";
+		String tempEmail = "";
+		UserStore userStore = new UserStore();
+		try {
+			Statement statement4 = conn.createStatement();
+			statement4.setQueryTimeout(30);
+			ResultSet rs3 = statement4.executeQuery("SELECT * FROM users");
+			while (rs3.next()) {
+				tempUserID = rs3.getInt(1);
+				tempUsername = rs3.getString(2);
+				tempPassword = rs3.getString(3);
+				tempEmail = rs3.getString(4);
+				User tempUser = new User(tempUsername, tempPassword, tempEmail);
+				userStore.add(tempUser);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} finally {
+			util.ConnectionUtil.closeConnection(conn);
+		}
+		return userStore;
 	}
 
 }

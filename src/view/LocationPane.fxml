@@ -20,22 +20,22 @@
    <children>
       <AnchorPane prefHeight="147.0" prefWidth="1024.0">
          <children>
-            <TextField fx:id="searchA" layoutX="141.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
+            <TextField fx:id="searchA" layoutX="141.0" layoutY="81.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
                <font>
                   <Font name="Verdana Italic" size="22.0" />
                </font>
             </TextField>
-            <TextField fx:id="searchB" layoutX="460.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
+            <TextField fx:id="searchB" layoutX="460.0" layoutY="81.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
                <font>
                   <Font name="Verdana Italic" size="22.0" />
                </font>
             </TextField>
-            <Button fx:id="searchButton" layoutX="779.0" layoutY="76.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">
+            <Button fx:id="searchButton" layoutX="779.0" layoutY="81.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">
                <font>
                   <Font name="Verdana" size="20.0" />
                </font>
             </Button>
-            <ImageView fx:id="searchIcon" fitHeight="47.0" fitWidth="42.0" layoutX="885.0" layoutY="82.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="searchIcon" fitHeight="47.0" fitWidth="42.0" layoutX="885.0" layoutY="87.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/searchIcon.png" />
                </image>
@@ -135,6 +135,30 @@
          <font>
             <Font name="Verdana" size="17.0" />
          </font>
+      </Button>
+      <Button fx:id="loginBtn" layoutX="700.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="42.0" prefWidth="144.0" style="-fx-border-color: #000000;" text="Login">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="registerBtn" layoutX="869.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="42.0" prefWidth="144.0" style="-fx-border-color: #000000;" text="Register">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="signoutBtn" layoutX="869.0" layoutY="20.0" mnemonicParsing="false" onAction="#handleSignout" prefHeight="42.0" prefWidth="144.0" style="-fx-border-color: #000000;" text="Sign Out" visible="false">
+         <font>
+            <Font name="Verdana" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="-15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleBack" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonExit" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="returnImage" fitHeight="427.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/returnIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
    </children>
 </AnchorPane>

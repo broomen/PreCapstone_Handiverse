@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import model_location.LocationStore;
 import model_review.ReviewStore;
 import model_tag.TagStore;
+import model_user.User;
+import model_user.UserStore;
 import util.ConnectionUtil;
 import util.Loader;
 
@@ -18,6 +20,10 @@ public class App extends Application {
 	private static LocationStore locStore;
 	private static TagStore tagStore;
 	private static ReviewStore reviewStore;
+	private static UserStore userStore;
+	private static boolean isLogged;
+	private static User currentUser;
+
 
 	public static void main(String[] args) {
 		launch(args);
@@ -30,6 +36,8 @@ public class App extends Application {
 		locStore = Loader.getLocationsFromDB();
 		tagStore = Loader.getTagsFromDB();
 		reviewStore = Loader.getReviewsFromDB();
+		userStore = Loader.getUsersFromDB();
+		isLogged = false;
 		controller.HomeController.setRecentLoc("11201");
 		Loader.addTagsTo(locStore, tagStore);
 		Loader.addReviewsTo(locStore, reviewStore);
@@ -50,6 +58,26 @@ public class App extends Application {
 	
 	public static ReviewStore getReviewStore() {
 		return reviewStore;
+	}
+	
+	public static UserStore getUserStore() {
+		return userStore;
+	}
+	
+	public static User getUser() {
+		return currentUser;
+	}
+	
+	public static void setUser(User user) {
+		currentUser = user;
+	}
+	
+	public static Boolean getLogged() {
+		return isLogged;
+	}
+	
+	public static void setLogged(Boolean log) {
+		isLogged = log;
 	}
 
 	public static Connection getConn() {

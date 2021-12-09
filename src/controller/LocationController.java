@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import app.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,6 +41,7 @@ import model_review.Review;
 import model_review.ReviewStore;
 import model_tag.Tag;
 import model_tag.TagStore;
+import model_user.User;
 
 public class LocationController implements Initializable{
 	
@@ -49,6 +51,10 @@ public class LocationController implements Initializable{
 	@FXML private TextField searchB;
 	@FXML private Button searchButton;
 	@FXML private ImageView searchImage;
+	@FXML private Button loginBtn;
+	@FXML private Button registerBtn;
+	@FXML private Button signoutBtn;
+	@FXML private ImageView returnImage;
 	
 	@FXML private Label nameLbl;
 	@FXML private Label addressLbl1;
@@ -68,12 +74,17 @@ public class LocationController implements Initializable{
 	@FXML private ListView<Review> reviewListView;
 	
 	private List<Button> btnList;	
+	private Label[] lblList;
 	private ArrayList<Review> reviewList;
+	private static boolean loggedIn;
+	private static User loggedUser;
+	
 	
 	private static Location currentLocation;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		lblList = new Label[8];
 		nameLbl.setText(currentLocation.getName());
 		addressLbl1.setText(currentLocation.getAddress());
 		addressLbl2.setText(currentLocation.getCity() + ", " + currentLocation.getStateInitials() + ", " + currentLocation.getZipCode());
@@ -82,6 +93,17 @@ public class LocationController implements Initializable{
 		buildTags(currentLocation.getTags());
 		getPicture();
 		buildReviews(currentLocation.getReviews());
+		if(App.getLogged()) {
+			createReviewBtn.setVisible(true);
+			loginBtn.setVisible(false);
+			registerBtn.setVisible(false);
+			signoutBtn.setVisible(true);			
+		} else {
+			createReviewBtn.setVisible(false);
+			loginBtn.setVisible(true);
+			registerBtn.setVisible(true);
+			signoutBtn.setVisible(false);
+		}
 				
 		
 	}
@@ -102,19 +124,6 @@ public class LocationController implements Initializable{
                             label.setWrappingWidth(reviewListView.getWidth()-40);
                             label.setFont(Font.font(19));
                             setGraphic(label);
-
-                            // decide to add a new styleClass
-                            // getStyleClass().add("costume style");
-                            // decide the new font size
-//                            setFont(Font.font(18));
-//                            setWrapText(true);
-                            
-//                            Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\" + String.valueOf(item.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
-//                            ImageView tempView = new ImageView(temp);
-//                            tempView.setPreserveRatio(true);
-//                            tempView.setFitWidth(100);
-//                            tempView.setFitHeight(100);
-//                            setGraphic(tempView);
                         }
                     }
                 };
@@ -135,25 +144,37 @@ public class LocationController implements Initializable{
 		btnList = new ArrayList<Button>();
 		int counter = 0;
 		Button tempBtn;
+		Label tempLbl = new Label("yay");
+		String tempKarma = "";
 		Font btnFont = Font.font("Verdana", 12);
 		for(Map.Entry<Integer, Tag> entry : tags.getTagStore().entrySet()) {
 			if(counter >= 8) {
 				break;
 			}
 			tempBtn = new Button(entry.getValue().getDesc() + " | (" + String.valueOf(entry.getValue().getKarma()) + ")");
-			
+//			tempBtn = new Button(entry.getValue().getDesc());
+//			tempKarma = String.valueOf(entry.getValue().getKarma());
+//			tempLbl.setText(tempKarma);
 			tempBtn.setFont(btnFont);
-			tempBtn.setMaxWidth(199);
-			tempBtn.setPrefHeight(60);
-			tempBtn.setPrefWidth(190);
+			tempBtn.setMaxWidth(400);
+			tempBtn.setPrefHeight(40);
+			tempBtn.setPrefWidth(250);
 			tempBtn.setMaxHeight(62);
 			tempBtn.setWrapText(true);
 			tempBtn.setOnAction(e -> {
 				handleEndorsement(e);
 			});
 			btnList.add(tempBtn);
+//			lblList[counter] = tempLbl;
+			counter++;
+			
 		}
 		btnPane.getChildren().addAll(btnList);
+//		for(int i = 0; i < btnList.size(); i++) {
+//			btnPane.getChildren().add(btnList.get(i));
+//			btnPane.getChildren().add(lblList[i]);
+//		}
+
 		
 	}
 	
@@ -180,9 +201,57 @@ public class LocationController implements Initializable{
 			if(entry.getValue().getDesc().contains(tempText)) {
 				entry.getValue().upvote();
 				((Button)e.getSource()).setText(entry.getValue().getDesc() + " | (" + String.valueOf(entry.getValue().getKarma()) + ")");
+				((Button)e.getSource()).setOnAction(event ->{
+					handlePointTakeaway(event);
+				});
 			}
 		}
 	}
+	
+	public void handlePointTakeaway(ActionEvent e) {
+		String tempText = ((Button)e.getSource()).getText();
+		tempText = tempText.substring(0, tempText.indexOf("|") - 1);
+		for(Map.Entry<Integer, Tag> entry : currentLocation.getTags().getTagStore().entrySet()) {
+			if(entry.getValue().getDesc().contains(tempText)) {
+				entry.getValue().downvote();
+				((Button)e.getSource()).setText(entry.getValue().getDesc() + " | (" + String.valueOf(entry.getValue().getKarma()) + ")");
+				((Button)e.getSource()).setOnAction(event ->{
+					handleEndorsement(event);
+				});
+			}
+		}
+		
+	}
+	
+	@FXML
+	public void handleBack(ActionEvent event) {
+		try {
+			URL url = new File("src/view/SearchPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (MalformedURLException e) {
+			System.out.println("url not found");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void handleButtonHover(MouseEvent event) {
+		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon2.png");
+		returnImage.setImage(temp);
+	}
+	
+	@FXML
+	public void handleButtonExit(MouseEvent event) {
+		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon.png");
+		returnImage.setImage(temp);
+	}
+	
 	
 	public void handleFiltering() {
 		String filter = searchFilter.getText().toLowerCase();
@@ -217,6 +286,66 @@ public class LocationController implements Initializable{
 			buildReviews(filteredReviews);
 		}
 		
+	}
+	
+	
+	@FXML
+	private void handleLogin(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/LocationPane.fxml").toURI().toURL();
+			LoginController.setPrevious(url);
+			url = new File("src/view/LoginPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleRegister(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/LocationPane.fxml").toURI().toURL();
+			RegisterController.setPrevious(url);
+			url = new File("src/view/RegisterPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleSignout(ActionEvent event) {
+		loggedIn = false;
+		App.setLogged(false);
+		App.setUser(null);
+		refreshButtons();
+		
+	}
+
+	private void refreshButtons() {
+		if(App.getLogged()) {
+			loginBtn.setVisible(false);
+			registerBtn.setVisible(false);
+			signoutBtn.setVisible(true);
+		} else {
+			loginBtn.setVisible(true);
+			registerBtn.setVisible(true);
+			signoutBtn.setVisible(false);
+		}
 	}
 
 	public static Location getCurrentLocation() {

@@ -119,14 +119,5 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="-15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleBack" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonExit" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fx:id="returnImage" fitHeight="427.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/returnIcon.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
    </children>
 </AnchorPane>

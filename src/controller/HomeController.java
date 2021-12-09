@@ -29,6 +29,8 @@ import model_location.Location;
 import model_location.LocationStore;
 import model_tag.Tag;
 import model_tag.TagStore;
+import model_user.User;
+import model_user.UserStore;
 
 public class HomeController implements Initializable{
 	
@@ -38,6 +40,9 @@ public class HomeController implements Initializable{
 	@FXML private TextField searchB;
 	@FXML private Button searchButton;
 	@FXML private ImageView searchImage;
+	@FXML private Button loginBtn;
+	@FXML private Button registerBtn;
+	@FXML private Button signoutBtn;
 	
 	@FXML private Button restBtn;
 	@FXML private Hyperlink parkLink;
@@ -46,15 +51,30 @@ public class HomeController implements Initializable{
 	
 	private LocationStore locStore = App.getLocStore();
 	private TagStore tagStore = App.getTagStore();
+	private UserStore userStore = App.getUserStore();
 	private LocationStore searchResultStore;
 	private ArrayList<Integer> keyList;
 	private static ArrayList<Location> locList;
 	private static String recentLoc;
+	private static boolean loggedIn;
+	private static User loggedUser;
 	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		locStore = App.getLocStore();
 		tagStore = App.getTagStore();
-		
+		userStore = App.getUserStore();
+		loggedIn = App.getLogged();
+		if(loggedIn) {
+			loginBtn.setVisible(false);
+			registerBtn.setVisible(false);
+			signoutBtn.setVisible(true);
+			loggedUser = App.getUser();
+			System.out.println(loggedUser.toString());
+		} else {
+			loginBtn.setVisible(true);
+			registerBtn.setVisible(true);
+			signoutBtn.setVisible(false);
+		}
 	}
 	
 	@FXML
@@ -194,6 +214,70 @@ public class HomeController implements Initializable{
 		return checker;		
 	}
 	
+	@FXML
+	private void handleLogin(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/HomePane.fxml").toURI().toURL();
+			LoginController.setPrevious(url);
+			url = new File("src/view/LoginPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleRegister(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/HomePane.fxml").toURI().toURL();
+			RegisterController.setPrevious(url);
+			url = new File("src/view/RegisterPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleSignout(ActionEvent event) {
+		loggedIn = false;
+		App.setLogged(false);
+		App.setUser(null);
+		refreshButtons();
+		
+	}
+	
+	@FXML
+	private void signoutTest(ActionEvent event) {
+		loggedIn = false;
+		refreshButtons();
+	}
+	
+	private void refreshButtons() {
+		if(loggedIn) {
+			loginBtn.setVisible(false);
+			registerBtn.setVisible(false);
+			signoutBtn.setVisible(true);
+		} else {
+			loginBtn.setVisible(true);
+			registerBtn.setVisible(true);
+			signoutBtn.setVisible(false);
+		}
+	}
 
 	
 	private void mapToList() {
