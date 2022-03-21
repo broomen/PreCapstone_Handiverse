@@ -15,3 +15,5 @@ Once on the page, the user can leave reviews or read reviews, endorse tags and r
 Things I would like to add in the future if I revisit this project would be to further develop the user account system to increase security and reliability, as well as compiling the whole project into a deployable application or make it capable to be deployed as a website. 
 
 All coding was done by Nicholas Broome (myself). Research and ideas were collaborated between Nicholas Broome and Vijay Kallem.
+
+TODO: Update comments in code/add comments where needed. 
