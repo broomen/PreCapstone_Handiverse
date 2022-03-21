@@ -8,7 +8,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+
+import app.App;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -38,6 +42,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model_location.Location;
+import model_location.LocationStore;
+import model_tag.Tag;
 import model_user.User;
 
 public class SearchController implements Initializable{
@@ -48,6 +54,11 @@ public class SearchController implements Initializable{
 	@FXML private TextField searchB;
 	@FXML private Button searchButton;
 	@FXML private ImageView searchImage;
+	@FXML private Button loginBtn;
+	@FXML private Button registerBtn;
+	@FXML private Button signoutBtn;
+	
+	@FXML private Label resultLbl;
 	
 	@FXML private ImageView returnImage;
 	
@@ -57,7 +68,9 @@ public class SearchController implements Initializable{
 	private static boolean loggedIn;
 	private static User loggedUser;
 	
-	
+	private LocationStore locStore = App.getLocStore();
+	private LocationStore searchResultStore;
+	private static String recentLoc;
 	private ArrayList<Integer> keyList;
 	private ArrayList<Location> locList;
 	private List<Image> listOfImages;
@@ -65,33 +78,42 @@ public class SearchController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		locList = HomeController.getLocList();
-		searchResults.getItems().addAll(locList);
-		ImageView testview;
-		searchResults.setCellFactory(new Callback<ListView<Location>, ListCell<Location>>() {
-            @Override
-            public ListCell<Location> call(ListView<Location> p) {
-                return new ListCell<Location>() {
-                    @Override
-                    protected void updateItem(Location item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (item != null) {
-                            setText(item.toString());
+		resultLbl.setVisible(false);
+		refreshButtons();
+		if(locList.size() > 0) {
+			searchResults.setVisible(true);
+			searchResults.getItems().addAll(locList);
+			ImageView testview;
+			searchResults.setCellFactory(new Callback<ListView<Location>, ListCell<Location>>() {
+	            @Override
+	            public ListCell<Location> call(ListView<Location> p) {
+	                return new ListCell<Location>() {
+	                    @Override
+	                    protected void updateItem(Location item, boolean empty) {
+	                        super.updateItem(item, empty);
+	                        if (item != null) {
+	                            setText(item.toString());
 
-                            // decide to add a new styleClass
-                            // getStyleClass().add("costume style");
-                            // decide the new font size
-                            setFont(Font.font(18));
-                            Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\" + String.valueOf(item.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
-                            ImageView tempView = new ImageView(temp);
-                            tempView.setPreserveRatio(true);
-                            tempView.setFitWidth(100);
-                            tempView.setFitHeight(100);
-                            setGraphic(tempView);
-                        }
-                    }
-                };
-            }
-        });		
+	                            // decide to add a new styleClass
+	                            // getStyleClass().add("costume style");
+	                            // decide the new font size
+	                            setFont(Font.font(18));
+	                            Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\" + String.valueOf(item.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
+	                            ImageView tempView = new ImageView(temp);
+	                            tempView.setPreserveRatio(true);
+	                            tempView.setFitWidth(100);
+	                            tempView.setFitHeight(100);
+	                            setGraphic(tempView);
+	                        }
+	                    }
+	                };
+	            }
+	        });	
+		} else {
+			searchResults.setVisible(false);
+			resultLbl.setVisible(true);
+		}
+			
 	}
 	
 	public void handleLocationSelect(MouseEvent event) {
@@ -153,14 +175,189 @@ public class SearchController implements Initializable{
 	
 	@FXML
 	public void handleButtonHover(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon2.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon2.png");
 		returnImage.setImage(temp);
 	}
 	
 	@FXML
 	public void handleButtonExit(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon.png");
 		returnImage.setImage(temp);
+	}
+	
+	@FXML
+	private void handleLogin(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/SearchPane.fxml").toURI().toURL();
+			LoginController.setPrevious(url);
+			url = new File("src/view/LoginPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleRegister(ActionEvent event) {
+		URL url;
+		try {
+			url = new File("src/view/SearchPane.fxml").toURI().toURL();
+			RegisterController.setPrevious(url);
+			url = new File("src/view/RegisterPane.fxml").toURI().toURL();
+			Parent root = FXMLLoader.load(url);
+			Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@FXML
+	private void handleSignout(ActionEvent event) {
+		loggedIn = false;
+		App.setLogged(false);
+		App.setUser(null);
+		refreshButtons();
+		
+		
+	}
+	
+	private void refreshButtons() {
+		if(loggedIn) {
+			loginBtn.setVisible(false);
+			registerBtn.setVisible(false);
+			signoutBtn.setVisible(true);
+		} else {
+			loginBtn.setVisible(true);
+			registerBtn.setVisible(true);
+			signoutBtn.setVisible(false);
+		}
+	}
+	
+	@FXML
+	public void handleSearch(ActionEvent event) {
+		searchResultStore = new LocationStore();
+		String fieldA = searchA.getText().toLowerCase();
+		String fieldB = searchB.getText().toLowerCase();
+		if(!fieldB.isEmpty()) {
+			recentLoc = fieldB;
+		}
+		if(searchA.getText().isEmpty() && !searchB.getText().isEmpty()) { 
+			searchForLocations(fieldB);
+		} else if(!searchA.getText().isEmpty() && searchB.getText().isEmpty()) {
+			
+			searchForTags(fieldA);
+			searchForTypes(fieldA);
+			searchForName(fieldA);
+		} else if(!searchA.getText().isEmpty() && !searchB.getText().isEmpty()) {
+			searchForMulti(fieldA, fieldB);
+		}
+		mapToList();
+//		searchResultStore.display();
+		URL url;
+			try {
+				HomeController.setLocList(locList);
+				url = new File("src/view/SearchPane.fxml").toURI().toURL();
+				Parent root = FXMLLoader.load(url);
+				Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			} catch (MalformedURLException e) {
+				System.out.println("url not found!");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	private void searchForMulti(String fieldA, String fieldB) {
+		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
+			if(entry.getValue().getName().toLowerCase().contains(fieldA)) { //name
+				if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+					searchResultStore.add(entry.getValue());
+				}
+			}
+			
+			if(entry.getValue().getType().toLowerCase().contains(fieldA)) { //type
+				if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+//				if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
+					searchResultStore.add(entry.getValue());
+				}
+			}
+			
+			for(Map.Entry<Integer, Tag> tagEntry : entry.getValue().getTags().getTagStore().entrySet()) {
+				if(tagEntry.getValue().getDesc().toLowerCase().contentEquals(fieldA)) {
+					if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+//					if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
+						searchResultStore.add(entry.getValue());
+					}
+				}
+			}	
+		}
+	}
+
+	private boolean searchForName(String fieldA) {
+		boolean checker = false;
+		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
+			if(entry.getValue().getName().toLowerCase().contains(fieldA)) {
+				searchResultStore.add(entry.getValue());
+				checker = true;
+			}
+		}	
+		return checker;	
+	}
+
+	private boolean searchForTypes(String fieldA) {
+		boolean checker = false;
+		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
+			if(entry.getValue().getType().toLowerCase().contains(fieldA)) {
+				searchResultStore.add(entry.getValue());
+				checker = true;
+			}
+		}
+		return checker;
+	}
+
+	private boolean searchForTags(String fieldA) {
+		boolean checker = false;
+		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
+			for(Map.Entry<Integer, Tag> tagEntry : entry.getValue().getTags().getTagStore().entrySet()) {
+				if(tagEntry.getValue().getDesc().toLowerCase().contentEquals(fieldA)) {
+					searchResultStore.add(entry.getValue());
+					checker = true;
+				}
+			}
+		}
+		return checker;
+	}
+
+	private boolean searchForLocations(String fieldB) {
+		boolean checker = false;
+		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
+			if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+				searchResultStore.add(entry.getValue());
+				checker = true;
+			}
+		}
+		return checker;	
+	}
+	
+	private void mapToList() {
+		keyList = new ArrayList<Integer>(searchResultStore.getLocationStore().keySet());
+		locList= new ArrayList<Location>(searchResultStore.getLocationStore().values());
 	}
 	
 //	public void initialize(URL arg0, ResourceBundle arg1) {

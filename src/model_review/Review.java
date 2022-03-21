@@ -105,7 +105,7 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Author: " + reviewAuthor + "\nDate: " + reviewDate + "\nRating: " + String.valueOf(rating) + "/5\nReview Score: " + String.valueOf(reviewKarma) + "\n" + reviewContent + "\n\n-------------------------------------------------\n";
+		return "Author: " + reviewAuthor + "\nDate: " + reviewDate + "\nRating: " + String.valueOf(rating) + "/5\n" + reviewContent + "\n\n-------------------------------------------------\n";
 	}
 	
 	public int compareTo(Review o) {

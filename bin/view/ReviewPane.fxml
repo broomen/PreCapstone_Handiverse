@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="searchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
+<AnchorPane fx:id="searchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" onMouseClicked="#handleHomeButton" text="Handiverse">
          <font>
@@ -20,12 +20,12 @@
       </Label>
       <TextField fx:id="searchA" layoutX="141.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
          <font>
-            <Font name="Verdana Italic" size="22.0" />
+            <Font name="Verdana" size="22.0" />
          </font>
       </TextField>
       <TextField fx:id="searchB" layoutX="460.0" layoutY="76.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
          <font>
-            <Font name="Verdana Italic" size="22.0" />
+            <Font name="Verdana" size="22.0" />
          </font>
       </TextField>
       <Button fx:id="searchButton" layoutX="779.0" layoutY="76.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">
@@ -119,5 +119,19 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
+      <Button layoutX="-15.0" layoutY="135.0" mnemonicParsing="false" onAction="#handleBack" onMouseEntered="#handleButtonHover" onMouseExited="#handleButtonExit" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="returnImage" fitHeight="427.0" fitWidth="144.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/returnIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="failLbl" layoutX="510.0" layoutY="680.0" text="Please fill out all fields." visible="false">
+         <font>
+            <Font name="Verdana Bold" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

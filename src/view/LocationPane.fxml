@@ -16,18 +16,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="locPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LocationController">
+<AnchorPane fx:id="locPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1024.0" style="-fx-background-color: #CCCCCC;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LocationController">
    <children>
       <AnchorPane prefHeight="147.0" prefWidth="1024.0">
          <children>
             <TextField fx:id="searchA" layoutX="141.0" layoutY="81.0" prefHeight="53.0" prefWidth="319.0" promptText="What are you looking for?" style="-fx-border-color: #000000;">
                <font>
-                  <Font name="Verdana Italic" size="22.0" />
+                  <Font name="Verdana" size="22.0" />
                </font>
             </TextField>
             <TextField fx:id="searchB" layoutX="460.0" layoutY="81.0" prefHeight="53.0" prefWidth="319.0" promptText="Where are you looking? " style="-fx-border-color: #000000;">
                <font>
-                  <Font name="Verdana Italic" size="22.0" />
+                  <Font name="Verdana" size="22.0" />
                </font>
             </TextField>
             <Button fx:id="searchButton" layoutX="779.0" layoutY="81.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="159.0" style="-fx-border-color: #000000;" text="Search        ">

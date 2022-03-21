@@ -231,16 +231,15 @@ public class ReviewController implements Initializable{
 	
 	@FXML
 	public void handleButtonHover(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon2.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon2.png");
 		returnImage.setImage(temp);
 	}
 	
 	@FXML
 	public void handleButtonExit(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon.png");
 		returnImage.setImage(temp);
 	}
-	
 	
 
 }

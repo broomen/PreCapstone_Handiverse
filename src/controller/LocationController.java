@@ -89,21 +89,11 @@ public class LocationController implements Initializable{
 		addressLbl1.setText(currentLocation.getAddress());
 		addressLbl2.setText(currentLocation.getCity() + ", " + currentLocation.getStateInitials() + ", " + currentLocation.getZipCode());
 		phoneLbl.setText(currentLocation.getPhone());
-		ratingLbl.setText(String.valueOf(currentLocation.getRating()) + "/5");
+		ratingLbl.setText(String.valueOf(currentLocation.getRating()) + "/5 Rating");
 		buildTags(currentLocation.getTags());
 		getPicture();
 		buildReviews(currentLocation.getReviews());
-		if(App.getLogged()) {
-			createReviewBtn.setVisible(true);
-			loginBtn.setVisible(false);
-			registerBtn.setVisible(false);
-			signoutBtn.setVisible(true);			
-		} else {
-			createReviewBtn.setVisible(false);
-			loginBtn.setVisible(true);
-			registerBtn.setVisible(true);
-			signoutBtn.setVisible(false);
-		}
+		refreshButtons();
 				
 		
 	}
@@ -132,7 +122,7 @@ public class LocationController implements Initializable{
 	}
 
 	private void getPicture() {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\" + String.valueOf(currentLocation.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\" + String.valueOf(currentLocation.getID()) + ".jpg"); //FIX ON LAPTOP FOR DISPLAY
         locPic.setPreserveRatio(true);
         locPic.setFitWidth(175);
         locPic.setFitHeight(175);
@@ -242,13 +232,13 @@ public class LocationController implements Initializable{
 	
 	@FXML
 	public void handleButtonHover(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon2.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon2.png");
 		returnImage.setImage(temp);
 	}
 	
 	@FXML
 	public void handleButtonExit(MouseEvent event) {
-		Image temp = new Image("File:E:\\Users\\Brick\\Documents\\homework\\CSE\\CSE248\\PreCapstoneHandiverse\\src\\images\\returnIcon.png");
+		Image temp = new Image("File:C:\\Users\\Nick\\eclipse-workspace\\PreCapstone_Handiverse\\src\\images\\returnIcon.png");
 		returnImage.setImage(temp);
 	}
 	
@@ -341,10 +331,12 @@ public class LocationController implements Initializable{
 			loginBtn.setVisible(false);
 			registerBtn.setVisible(false);
 			signoutBtn.setVisible(true);
+			createReviewBtn.setVisible(true);
 		} else {
 			loginBtn.setVisible(true);
 			registerBtn.setVisible(true);
 			signoutBtn.setVisible(false);
+			createReviewBtn.setVisible(false);
 		}
 	}
 

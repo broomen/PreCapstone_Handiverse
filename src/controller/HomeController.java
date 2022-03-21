@@ -19,9 +19,12 @@ import javafx.scene.Scene;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -48,6 +51,7 @@ public class HomeController implements Initializable{
 	@FXML private Hyperlink parkLink;
 	@FXML private Hyperlink museumLink;
 	@FXML private Hyperlink theaterLink;
+	@FXML private Label usernameLbl;
 	
 	private LocationStore locStore = App.getLocStore();
 	private TagStore tagStore = App.getTagStore();
@@ -64,17 +68,7 @@ public class HomeController implements Initializable{
 		tagStore = App.getTagStore();
 		userStore = App.getUserStore();
 		loggedIn = App.getLogged();
-		if(loggedIn) {
-			loginBtn.setVisible(false);
-			registerBtn.setVisible(false);
-			signoutBtn.setVisible(true);
-			loggedUser = App.getUser();
-			System.out.println(loggedUser.toString());
-		} else {
-			loginBtn.setVisible(true);
-			registerBtn.setVisible(true);
-			signoutBtn.setVisible(false);
-		}
+		refreshButtons();
 	}
 	
 	@FXML
@@ -96,9 +90,8 @@ public class HomeController implements Initializable{
 			searchForMulti(fieldA, fieldB);
 		}
 		mapToList();
-		searchResultStore.display();
+//		searchResultStore.display();
 		URL url;
-		if (locList.size() > 0) {
 			try {
 				url = new File("src/view/SearchPane.fxml").toURI().toURL();
 				Parent root = FXMLLoader.load(url);
@@ -113,18 +106,16 @@ public class HomeController implements Initializable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
 	}
 	
 	@FXML
 	public void handleHiddenButton(ActionEvent event) {
-		System.out.println("bonk!");
 		searchResultStore = new LocationStore();
 		String fieldA = ((Button)event.getSource()).getText();
 		String fieldB = recentLoc;
 		searchForMulti(fieldA, fieldB);
 		mapToList();
-		searchResultStore.display();
+//		searchResultStore.display();
 		URL url;
 		if (locList.size() > 0) {
 			try {
@@ -146,28 +137,30 @@ public class HomeController implements Initializable{
 
 	private void searchForMulti(String fieldA, String fieldB) {
 		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
-			if(entry.getValue().getName().contains(fieldA)) { //name
-				if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
+			if(entry.getValue().getName().toLowerCase().contains(fieldA)) { //name
+				if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
 					searchResultStore.add(entry.getValue());
 				}
 			}
 			
-			if(entry.getValue().getType().contains(fieldA)) { //type
-				if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
+			if(entry.getValue().getType().toLowerCase().contains(fieldA)) { //type
+				if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+//				if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
 					searchResultStore.add(entry.getValue());
 				}
 			}
 			
 			for(Map.Entry<Integer, Tag> tagEntry : entry.getValue().getTags().getTagStore().entrySet()) {
-				if(tagEntry.getValue().getDesc().contentEquals(fieldA)) {
-					if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
+				if(tagEntry.getValue().getDesc().toLowerCase().contentEquals(fieldA)) {
+					if(entry.getValue().getCity().toLowerCase().contains(fieldB) || entry.getValue().getZipCode().toLowerCase().contains(fieldB) || entry.getValue().getState().toLowerCase().contains(fieldB) || entry.getValue().getStateInitials().toLowerCase().contains(fieldB)) {
+//					if(entry.getValue().getCity().contains(fieldB) || entry.getValue().getZipCode().contains(fieldB) || entry.getValue().getState().contains(fieldB) || entry.getValue().getStateInitials().contains(fieldB)) {
 						searchResultStore.add(entry.getValue());
 					}
 				}
 			}	
 		}
 	}
-
+	
 	private boolean searchForName(String fieldA) {
 		boolean checker = false;
 		for(Map.Entry<Integer, Location> entry : locStore.getLocationStore().entrySet()) {
@@ -261,21 +254,18 @@ public class HomeController implements Initializable{
 		
 	}
 	
-	@FXML
-	private void signoutTest(ActionEvent event) {
-		loggedIn = false;
-		refreshButtons();
-	}
-	
 	private void refreshButtons() {
 		if(loggedIn) {
 			loginBtn.setVisible(false);
 			registerBtn.setVisible(false);
 			signoutBtn.setVisible(true);
+			usernameLbl.setVisible(true);
+			usernameLbl.setText("Welcome, " + App.getUser().getUsername() + "!");
 		} else {
 			loginBtn.setVisible(true);
 			registerBtn.setVisible(true);
 			signoutBtn.setVisible(false);
+			usernameLbl.setVisible(false);
 		}
 	}
 
@@ -297,8 +287,8 @@ public class HomeController implements Initializable{
 		return locList;
 	}
 
-	public void setLocList(ArrayList<Location> locList) {
-		this.locList = locList;
+	public static void setLocList(ArrayList<Location> newlocList) {
+		locList = newlocList;
 	}
 	
 	public static void setRecentLoc(String zip) {
