@@ -13,3 +13,5 @@ After the user searches, they will find a list returned on a new page that displ
 Once on the page, the user can leave reviews or read reviews, endorse tags and reviews made by other users, or return to the previous screen.
 
 Things I would like to add in the future if I revisit this project would be to further develop the user account system to increase security and reliability, as well as compiling the whole project into a deployable application or make it capable to be deployed as a website. 
+
+All coding was done by Nicholas Broome (myself). Research and ideas were collaborated between Nicholas Broome and Vijay Kallem.
